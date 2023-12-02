@@ -15,6 +15,18 @@ model User {
     id    String  @id @default(auto()) @map("_id") @db.ObjectId
     email String  @unique
     name  String?
+    password String
+    role Permission[]
+    refreshToken String?
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now())
+}
+
+model Permission {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  uId String
+  user User @relation(fields: [uId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }

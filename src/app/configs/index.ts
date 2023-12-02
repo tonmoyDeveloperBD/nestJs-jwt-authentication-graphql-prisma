@@ -8,9 +8,9 @@
 */
 
 import config___app from './app.config';
-import config___file from './file.config';
+import config___jwt from './jwt.config';
 
 /**
  * Register the configuration services.
  */
-export default [config___app, config___file];
+export default [config___app,config___jwt];

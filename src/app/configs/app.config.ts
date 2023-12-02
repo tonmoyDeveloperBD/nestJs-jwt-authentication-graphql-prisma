@@ -14,7 +14,7 @@ export default registerAs('app', () => ({
       | any other location as required by the application or its packages.
       |
       */
-  name: process.env.APP_NAME || 'Safewheel API',
+  name: process.env.APP_NAME || 'Nest Js JWT Authentication',
   /*
       |--------------------------------------------------------------------------
       | Application Description
