@@ -19,6 +19,16 @@ export class AuthService {
         let userData = await this.prismService.user.findFirst({
             where: {
                 email: authSignInInput.email
+            },
+            select:{
+                refreshToken:false,
+                id:true,
+                password:true,
+                email:true,
+                name:true,
+                userPermission:true,
+                createdAt:true,
+                updatedAt:true
             }
         })
         if (!Boolean(userData)){

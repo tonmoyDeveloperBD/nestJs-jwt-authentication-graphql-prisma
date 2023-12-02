@@ -8,6 +8,11 @@ import {GraphQLModule} from "@nestjs/graphql";
 import {ApolloDriver} from "@nestjs/apollo";
 import {UsersModule} from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import {JwtStrategy} from "./shared/strategy/jwt.strategy";
+import {JwtModule, JwtService} from "@nestjs/jwt";
+import {APP_GUARD} from "@nestjs/core";
+import {RoleGuard} from "./shared/guard/role.guard";
+import {PrismaService} from "./prisma/prisma.service";
 
 @Module({
     imports: [
@@ -27,7 +32,15 @@ import { AuthModule } from './modules/auth/auth.module';
         UsersModule,
         AuthModule],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [AppService,
+        JwtStrategy,
+        JwtService,
+        {
+            provide: APP_GUARD,
+            useClass: RoleGuard,
+        },
+        PrismaService
+    ],
 })
 export class AppModule {
 }

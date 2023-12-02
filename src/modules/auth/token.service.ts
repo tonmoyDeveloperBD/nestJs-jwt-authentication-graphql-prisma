@@ -29,6 +29,7 @@ export class TokenService {
             const accessTokenLifetime = this.configService.get('ACCESS_TOKEN_LIFETIME');
             return this.accessTokenGenerator(userData);
         } catch (error) {
+            console.log(error)
             // Check if the error is due to an expired refresh token
             if (error.name === 'TokenExpiredError' && error.message === 'jwt expired') {
                 // Generate a new refresh token
